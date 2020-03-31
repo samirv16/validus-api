@@ -9,6 +9,16 @@ class WorkoutsController < ApplicationController
         render json: @workout
     end
 
+    def create
+        @workout = Workout.new(workout_params)
+
+        if @workout.save
+            render json: @workout, status: :created, location: @workout
+        else 
+            render json: @workout.errors, status: :unprocessable_entity
+        end
+    end
+
     private
 
     def set_workout
