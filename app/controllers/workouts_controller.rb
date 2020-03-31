@@ -19,6 +19,14 @@ class WorkoutsController < ApplicationController
         end
     end
 
+    def update
+        if @workout.update(workout_params)
+            render json: @workout
+          else
+            render json: @workout.errors, status: :unprocessable_entity
+          end
+    end
+
     private
 
     def set_workout
