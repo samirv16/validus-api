@@ -1,4 +1,5 @@
 class WorkoutsController < ApplicationController
+    before_action :set_workout, only: [:show, :update, :destroy]
 
     def index
         @workouts = Workout.all
@@ -25,6 +26,11 @@ class WorkoutsController < ApplicationController
           else
             render json: @workout.errors, status: :unprocessable_entity
           end
+    end
+
+    def destroy
+        @workout.destroy
+        render json: @workout 
     end
 
     private
