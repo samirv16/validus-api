@@ -15,4 +15,8 @@ class WorkoutsController < ApplicationController
         @workout = Workout.find(params[:id])
     end
 
+    def workout_params
+        params.require(:workout).permit(:name, :body, :rounds)
+    end
+
 end
